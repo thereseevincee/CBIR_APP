@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- ADD THIS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">
+        <div class="logo-box">🐟</div>
+        <div>
+            <h3>Fish CBIR</h3>
+        </div>
+    </div>
+
+    <a href="/" class="new-search-btn">
+    <i class="fa-solid fa-arrows-rotate" style="color: rgb(30, 129, 211);"></i>
+     New Search
+    </a>
+</div>
+
+<div class="main-container">
+
+    <h1 class="title">Analysis Results</h1>
+    <p class="subtitle">Species identification complete</p>
+
+    <div class="result-wrapper">
+
+        <!-- LEFT -->
+        <div class="left-card">
+            <h2 class="section-title"><i class="fa-solid fa-magnifying-glass" style="color: rgb(9, 55, 92);"></i>   Query Image</h2>
+            <img src="/{{ query }}" class="query-img">
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-card">
+            <h2 class="section-title">Top 3 Similar Images</h2>
+            <h3 class="mini-sub">Most visually similar species from database:</h3>
+
+            <div class="top-images">
+                {% for img in results %}
+                <div class="image-item {% if loop.index == 1 %}best{% endif %}">
+
+                    <div class="rank">{{ loop.index }}</div>
+
+                    <img src="/{{ img }}">
+
+                    <div class="badge">{{ scores[loop.index0] }}%</div>
+
+
+                <!-- 🧠 LABEL -->
+                <p class="img-label">
+                         {{ labels[loop.index0].replace('_', ' ').title() }}
+                 </p>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- RESULT CARD -->
+            <div class="result-card">
+
+                <p class="match-text">
+                    The input image is most similar to 
+                    <span class="highlight">{{ label }}</span>.
+                </p>
+
+            <div class="confidence-section">
+                <p class="mini-sub">Similarity Confidence:</p>
+                <h2 class="confidence">{{ confidence }}%</h2>
+            </div>
+
+                <div class="progress">
+                    <div class="progress-bar" style="--target-width: {{ confidence }}%;"></div>
+                </div>
+
+                <div class="desc-box">
+                    <h4>Species Description</h4>
+                    <p>{{ description }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

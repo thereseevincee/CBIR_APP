@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- ADD THIS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">
+        <div class="logo-box">🐟</div>
+        <div>
+            <h3>Fish CBIR</h3>
+        </div>
+    </div>
+
+    <a href="/" class="new-search-btn">
+    <i class="fa-solid fa-arrows-rotate" style="color: rgb(30, 129, 211);"></i>
+    New Search
+    </a>
+</div>
+
+<div class="center">
+
+    <h1>Upload Fish Image</h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <label class="upload-box">
+
+            <input type="file" name="image" id="fileInput" required hidden>
+
+            <!-- CONTENT -->
+            <div class="upload-content" id="uploadText">
+                <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up" <i class="fa-solid fa-cloud-arrow-up" style="color: rgb(29, 128, 209);"></i></div>
+                <p>Click to upload image</p>
+                <span>JPG, PNG or WebP (Max 10MB)</span>
+            </div>
+
+            <!-- PREVIEW -->
+            <div class="preview-container">
+                <img id="preview" class="preview-img">
+            </div>
+
+        </label>
+
+        <button class="btn big-btn">Analyze Image</button>
+
+    </form>
+
+</div>
+
+<script>
+const input = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+const text = document.getElementById("uploadText");
+
+input.addEventListener("change", function() {
+    const file = this.files[0];
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+        text.style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>

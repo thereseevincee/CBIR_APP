@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Processing...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="loading-screen">
+    <div class="loader-box">
+
+        <div class="spinner"></div>
+
+        <h2>Processing Image</h2>
+        <p>Analyzing features and searching for similar fish species...</p>
+
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    setTimeout(() => {
+        window.location.href = "{{ redirect_url }}";
+    }, 2000); // 2 seconds loading
+</script>
+
+</body>
+</html>
